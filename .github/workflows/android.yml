@@ -13,6 +13,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # JDK + Gradle dependency cache
       - uses: actions/setup-java@v4
         with:
           java-version: 21
@@ -22,11 +23,15 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build debug APK
+      # Optional but useful for debugging paths
+      # - name: Show Gradle and AGP info
+      #   run: ./gradlew -v
+
+      - name: Build debug APKs
         run: ./gradlew assembleDebug
 
-      - name: Upload debug APK
+      - name: Upload debug APKs
         uses: actions/upload-artifact@v4
         with:
-          name: debug-apk
-          path: app/build/outputs/apk/debug/*.apk
+          name: debug-apks
+          path: app/build/outputs/apk/**/debug/*.apk
