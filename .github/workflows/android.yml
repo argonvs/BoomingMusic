@@ -37,7 +37,7 @@ jobs:
       run: chmod +x gradlew
 
     - name: Build with Gradle
-      run: ./gradlew assemble
+      run: ./gradlew assembleDebug
 
     - name: Upload PR artifacts
       if: github.event_name == 'pull_request'
